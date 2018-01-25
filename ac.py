@@ -79,13 +79,12 @@ env = World.World(robotJoints = 2, robotJointsLength = 0.35,
 	randomizeRobot = False, randomizeTarget = False,
 	 groundHeight =0.05, targetLimits = [0.05,0.95,0.1,0.65])
 
-env.setTargetPosition([[0.3,0.6]])
+env.setTargetPosition([[0.3,0.6]]) # if you want to manually set the targets, make sure randomizeTarget is set to False and then 
+# use env.setTargetPosition([p1,p2,...,pn])
 
 env_infos = [6,env.actionSpaceSize()]
 hidden = 64
-# import gym 
-# env = gym.make('Acrobot-v1')
-# env_infos = [6,3]
+
 
 player = Agent(env_infos, hidden)
 #player = torch.load('bl.new')
@@ -135,7 +134,7 @@ if len(success_hist) > 10:
 	plt.plot(np.arange(len(success_hist)),success_hist)
 	plt.xlabel('Epochs')
 	plt.ylabel('Success')
-	plt.ylim(0,101)
+	plt.ylim(0,info +1)
 	plt.title('2 joints robot with one fixed target')
 	plt.pause(0.1)
 	raw_input()
